@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>{{ myX }} or {{ myY }}? </title>
+
+  <style>
+      body {
+          background-image: url('../static/bcr.png');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: 100% 100%;
+          background-color: rgba(255,255,255,0.2);
+          background-blend-mode: lighten;
+         
+      }
+      #footer {
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          background-color:pink;
+          color: black;
+          text-align: center;
+      }
+  
+      /* navbar */
+.navbar-default {
+    background-color: #FFB6C1;
+    border-color: #E7E7E7;
+     
+    }
+ 
+}
+
+
+
+  </style>
+  </head>
+  <body>
+ <nav class="navbar navbar-default" role="navigation">
+   <div class="col text-center">
+                  <h2 style="color :white; "><b>Breast Cancer Detection</b></h2>
+                  <h5 style="color :white;"><b>By using Histopathology Images</b></h5>
+              </div>
+ </nav>
+<!-- A dark one -->
+      <div class="container">
+       
+          
+          <div class="row align-items-end">
+              <div class="col text-center">
+                  <img height="150" width="150" src="{{mySampleX}}" class="img-thumbnail" />
+                  <h3 style="color : white; ">{{ myX }}</h3>
+              </div>
+              <div class="col text-center">
+                  <h3 style="color :white; ">or</h3>
+              </div>
+              <div class="col text-center">
+                  <img height="150" width="150" src="{{mySampleY}}" class="img-thumbnail" />
+                  <h3 style="color : white; ">{{ myY }}</h3>
+              </div>
+          </div>
+          <hr />
+          <div class="row">
+              <div class="col">
+                  <div class="col text-center">
+	
+                    	<h5 style="color :black ">Select the Model for Detection</h5>
+	
+                    	<input  type="radio" name="model" value="cnn" checked><span style='color:#FF1493'><b> CNN</b></span></br>
+	
+                    	<input  type="radio" name="model" value="vgg16" style="margin-left:13px"><span style='color:#FF1493'><b> VGG16</b></span></br>
+	
+                  </div>
+                  
+                  <div class="col text-center">
+                      <h5 style="color :black ">Upload Histopathology Image</h5>
+                      <form action="/" method=post enctype="multipart/form-data">
+                          <input type="file" name="file" />    
+                          <input type="submit" value="Submit"/>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          {% for message in get_flashed_messages() %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          {% endfor %}
+          <hr />
+          <div class="row">
+              {% if results is defined %}
+              
+
+              {{ results|safe }}
+
+             
+              {% endif %}
+          </div>
+
+          <div id="footer">
+              Developed under the supervision of Dr. Tariq Sadad
+          </div>
+      </div>
+
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
